@@ -93,11 +93,11 @@ action:"Closed",
                                 <p>Student Name - {user.username}</p>
                                 <p>Batch: {user.batch}</p>
                                 <p>Query - {user.querytitle}</p>
-                                <p>Created at:{user.date}</p>
+                                
                                 <p>Description: {user.querydescription}</p>
                                 <p>Category: {user.category}</p>
                                 <p>Preferred Language:{user.language}</p>
-                                
+                                <p>Created at:{user.date}</p>
                                
                                 </div>
                             </div>
