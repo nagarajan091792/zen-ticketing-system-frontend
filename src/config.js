@@ -1,4 +1,4 @@
 export const config={
    
-    api:"http://localhost:5000"
+    api:"https://zenclass-ticketing-system.onrender.com"
 }
