@@ -97,7 +97,7 @@ action:"Closed",
                                 <p>Description: {user.querydescription}</p>
                                 <p>Category: {user.category}</p>
                                 <p>Preferred Language:{user.language}</p>
-                                <p>Created at:new Date(Date.now()).getHours() + ':' + new Date(Date.now()).getMinutes()</p>
+                                <p>Created at: {user.date}</p>
                                
                                 </div>
                             </div>
