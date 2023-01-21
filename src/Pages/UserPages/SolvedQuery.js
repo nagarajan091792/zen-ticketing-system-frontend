@@ -34,7 +34,7 @@ function SolvedQuery() {
         
         {
                 isloading ? <div class="d-flex justify-content-center">
-                <div class="spinner-border" role="status">
+                <div class="spinner-border m-5" role="status">
                   
                 </div>
               </div> :
