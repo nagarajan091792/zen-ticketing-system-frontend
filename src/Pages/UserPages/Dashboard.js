@@ -5,17 +5,18 @@ import { Link } from "react-router-dom"
 
 function Dashboard(){
   const [user, setUser] = useState([]);
-  
+  const [isloading,setloading] = useState(false)
   useEffect(() => {fetchData(); },[]);
   let fetchData = async () => {
     try {
+	    setloading(true)
       let response = await axios.get(`${config.api}/userportal/getquery`, {
         headers: {
           'authorization': `${localStorage.getItem('usertoken')}`
         }   
       }); 
     setUser(response.data);
-  
+     setloading(false)
     
     } catch (error) {
       console.log(error)
@@ -26,7 +27,8 @@ function Dashboard(){
         <div class="card-body d-flex flex-column align-items-center" style={{margin:"10px"}}>
        <Link to="/userportal/addquery"><button class=" btn btn-outline-primary "> + Create Query</button></Link> 
         </div>
-       
+     {
+                isloading ? <span>Loading.....</span> :  
         {user.slice(0).reverse().map((e) => {
         return (
          
@@ -59,7 +61,7 @@ function Dashboard(){
 
        
        );
-      })}    
+      })}    }
         </>
     )
 }
