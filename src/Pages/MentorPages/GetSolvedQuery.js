@@ -6,16 +6,19 @@ import { Link } from "react-router-dom"
 
 function GetSolvedQuery(){
   const [user, setUser] = useState([]);
+	 const [isloading,setloading] = useState(false)
   useEffect(() => {fetchData(); },[]);
 
   let fetchData = async () => {
     try {
+	    setloading(true)
       let response = await axios.get(`${config.api}/mentorportal/getsolvedquery`, {
         headers: {
           'authorization': `${localStorage.getItem('mentortoken')}`
         }   
       }); 
     setUser(response.data);
+	    setloading(false)
     } catch (error) {
       console.log(error)
     }
@@ -24,7 +27,9 @@ function GetSolvedQuery(){
     return(
         <>
        <h2 class="text-center">Solved Queries</h2>
-       
+        {
+                isloading ? <span>Loading.....</span> :
+	   <div> 
        {user.slice(0).reverse().map((e) => {
         return (
          
@@ -54,7 +59,7 @@ function GetSolvedQuery(){
 </div></div>
        
        );
-      })}    
+      })} </div>}   
         </>
     )
 }
