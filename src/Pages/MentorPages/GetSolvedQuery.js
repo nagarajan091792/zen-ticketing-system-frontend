@@ -28,7 +28,11 @@ function GetSolvedQuery(){
         <>
        <h2 class="text-center">Solved Queries</h2>
         {
-                isloading ? <span>Loading.....</span> :
+                isloading ?  <div class="d-flex justify-content-center">
+                <div class="spinner-border" role="status">
+                  
+                </div>
+              </div> :
 	   <div> 
        {user.slice(0).reverse().map((e) => {
         return (
