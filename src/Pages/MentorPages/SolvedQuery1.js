@@ -5,16 +5,19 @@ import { config } from "../../config";
 function SolvedQuery1 () {
     let params = useParams();  
     const [user, setUser] = useState([]);
+    const [isloading,setloading] = useState(false)
     useEffect(() => {fetchData(); },[]);
     async function fetchData() {
         try {
+            setloading(true)
           const response = await axios.get(`${config.api}/portal/query/${params.id}`,        
              {
                headers: {
                 authorization: `${localStorage.getItem("mentortoken")}`,
               },
              })           
-        setUser(response.data);                
+        setUser(response.data); 
+            setloading(false)
         } catch (error) {        
           console.log("error");
         }
@@ -22,6 +25,13 @@ function SolvedQuery1 () {
       const a =   user.solveid ? "closed" : "open"
     return(
         <>
+        <div>
+         {
+                isloading ?  <div class="d-flex justify-content-center">
+                <div class="spinner-border" role="status">
+                 
+                </div>
+              </div> :
        <div className="container">
                 <div className="row">
                     <div class="card-group">
@@ -74,7 +84,7 @@ function SolvedQuery1 () {
                         
                         </div>
                 </div>
-            </div>
+            </div>}</div>
         </>
     )
 }
