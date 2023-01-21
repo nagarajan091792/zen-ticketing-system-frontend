@@ -6,15 +6,18 @@ import { Link } from "react-router-dom"
 
 function GetUnsolvedQuery(){
   const [user, setUser] = useState([]);
+	const [isloading,setloading] = useState(false)
   useEffect(() => {fetchData(); },[]);
   let fetchData = async () => {
     try {
+	    setloading(true)
       let response = await axios.get(`${config.api}/mentorportal/getunsolvedquery`, {
         headers: {
           'authorization': `${localStorage.getItem('mentortoken')}`
         }   
       }); 
     setUser(response.data);
+	    setloading(false)
     } catch (error) {
       console.log(error)
     }
@@ -29,7 +32,13 @@ function GetUnsolvedQuery(){
         <>
        
        <h2 class="text-center">Unsolved Queries</h2>
-        {user.map((e) => {
+	    {
+                isloading ? <div class="d-flex justify-content-center">
+                <div class="spinner-border" role="status">
+                 
+                </div>
+              </div> :
+       <div> {user.map((e) => {
         return (
          
         <div class="container mb-1"> 
@@ -55,7 +64,7 @@ function GetUnsolvedQuery(){
 </div></div>
        
        );
-      })}    
+      })} </div>  } 
         </>
     )
 }
