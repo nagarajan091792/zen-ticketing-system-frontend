@@ -4,10 +4,12 @@ import { useParams } from "react-router-dom";
 import { config } from "../../config";
 function SolvedQuery() {
         let params = useParams();  
+        const [isloading,setloading] = useState(false)
         const [user, setUser] = useState([]);
         useEffect(() => {fetchData(); },[]);
         async function fetchData() {
             try {
+                     setloading(true)
               const response = await axios.get(`${config.api}/portal/query/${params.id}`,
                  {
                    headers: {
@@ -15,7 +17,8 @@ function SolvedQuery() {
                   },
                  })
            
-            setUser(response.data);                
+            setUser(response.data);  
+                     setloading(false)
             } catch (error) {
               console.error(error);
             }
@@ -29,7 +32,12 @@ function SolvedQuery() {
     return (
         <>
         
-        
+        {
+                isloading ? <div class="d-flex justify-content-center">
+                <div class="spinner-border" role="status">
+                  <span class="sr-only">Loading...</span>
+                </div>
+              </div></span> :
             <div className="container">
                 <div className="row">
                     <div class="card-group">
@@ -80,6 +88,7 @@ function SolvedQuery() {
                         </div>
                 </div>
             </div>
+}
         </>
     )
 }
