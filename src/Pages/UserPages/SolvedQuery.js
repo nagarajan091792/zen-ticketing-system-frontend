@@ -35,9 +35,9 @@ function SolvedQuery() {
         {
                 isloading ? <div class="d-flex justify-content-center">
                 <div class="spinner-border" role="status">
-                  <span class="sr-only">Loading...</span>
+                  
                 </div>
-              </div></span> :
+              </div> :
             <div className="container">
                 <div className="row">
                     <div class="card-group">
