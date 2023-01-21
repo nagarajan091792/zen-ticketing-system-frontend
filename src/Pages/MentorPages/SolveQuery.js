@@ -59,16 +59,19 @@ action:"Closed",
 
         let params = useParams();  
         const [user, setUser] = useState([]);
+  const [isloading,setloading] = useState(false)
         useEffect(() => {fetchData(); },[]);
         async function fetchData() {
             try {
+              setloading(true)
               const response = await axios.get(`${config.api}/portal/query/${params.id}`,            
                  {
                    headers: {
                     authorization: `${localStorage.getItem("mentortoken")}`,
                   },
                  })               
-            setUser(response.data);                
+            setUser(response.data);  
+              setloading(false)
             } catch (error) {
               
               console.log("error"+error);
@@ -82,7 +85,12 @@ action:"Closed",
     return (
         <>
         
-       
+       {
+                isloading ?  <div class="d-flex justify-content-center">
+                <div class="spinner-border" role="status">
+                  
+                </div>
+              </div> : 
             <div className="container">
                 <div className="row">
                     <div class="card-group">
@@ -155,6 +163,7 @@ action:"Closed",
                         </div>
                 </div>
             </div>
+            }
         </>
     )
 }
