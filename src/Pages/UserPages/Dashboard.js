@@ -28,8 +28,12 @@ function Dashboard(){
        <Link to="/userportal/addquery"><button class=" btn btn-outline-primary "> + Create Query</button></Link> 
         </div>
      {
-                isloading ? <span>Loading.....</span> :  
-        {user.slice(0).reverse().map((e) => {
+                isloading ? <div class="d-flex justify-content-center">
+  <div class="spinner-border" role="status">
+    <span class="sr-only">Loading...</span>
+  </div>
+</div> :  
+       <div> {user.slice(0).reverse().map((e) => {
         return (
          
         <div class="container mb-1"> 
@@ -61,7 +65,7 @@ function Dashboard(){
 
        
        );
-      })}    }
+      })}</div>    }
         </>
     )
 }
